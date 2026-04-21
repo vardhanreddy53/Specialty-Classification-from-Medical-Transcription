@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Transcript Classifier</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="container">
+        <header>
+            <h1>Medical Transcript <span class="highlight">Classifier</span></h1>
+            <p>Paste clinical transcripts below and let AI predict the medical<br>specialty category.</p>
+        </header>
+
+        <main>
+            <div class="main-card">
+                <div class="card-header-label">
+                    <span class="dot"></span> INPUT TRANSCRIPT
+                </div>
+                
+                <div class="textarea-wrapper">
+                    <textarea id="transcript-input" placeholder="Paste your medical transcript here...&#10;&#10;Example: Patient presents with persistent chest pain radiating to the left arm, accompanied by shortness of breath and diaphoresis. ECG shows ST-segment elevation in leads II, III, and aVF..."></textarea>
+                    <div class="char-count" id="char-count">0 chars</div>
+                </div>
+
+                <div class="button-group">
+                    <button id="predict-btn" class="primary-btn">
+                        <span>Classify Transcript</span>
+                        <div class="loader" id="btn-loader"></div>
+                    </button>
+                    <button id="clear-btn" class="secondary-btn">Clear</button>
+                </div>
+            </div>
+
+            <div class="samples-section">
+                <p>Try a sample transcript:</p>
+                <div class="sample-pills">
+                    <button class="pill" data-text="Patient presents with persistent chest pain radiating to the left arm, accompanied by shortness of breath and diaphoresis. ECG shows ST-segment elevation in leads II, III, and aVF...">Cardiology</button>
+                    <button class="pill" data-text="A 65-year-old male with a history of hypertension presents with sudden onset of right-sided weakness and aphasia. CT of the head reveals a left middle cerebral artery territory acute infarct.">Neurology</button>
+                    <button class="pill" data-text="Patient complains of right knee pain after a twisting injury during a soccer match. Examination reveals a positive anterior drawer test and medial joint line tenderness. MRI shows an ACL tear.">Orthopedics</button>
+                    <button class="pill" data-text="Patient has a 2-week history of an erythematous, scaly plaque on the right forearm that is intensely pruritic. Suspected tinea corporis. Prescribed topical clotrimazole.">Dermatology</button>
+                    <button class="pill" data-text="Patient presents with a 3-month history of postprandial epigastric pain, nausea, and early satiety. EGD performed today showed severe antral gastritis and a 1cm duodenal ulcer.">Gastroenterology</button>
+                    <button class="pill" data-text="The patient is a 55-year-old female with a long history of smoking presenting with worsening dyspnea on exertion and a chronic productive cough. PFTs indicate severe obstructive lung disease consistent with COPD.">Pulmonology</button>
+                </div>
+            </div>
+
+            <div class="error-msg" id="error-msg"></div>
+
+            <div class="results-section" id="results-section">
+                <div class="model-column biobert" id="card-biobert">
+                    <div class="col-header">
+                        <h2>BioBert</h2>
+                        <span class="badge">Model A</span>
+                    </div>
+                    <div class="col-body" id="biobert-results"></div>
+                </div>
+
+                <div class="model-column roberta" id="card-roberta">
+                    <div class="col-header">
+                        <h2>RoBERTa</h2>
+                        <span class="badge">Model B</span>
+                    </div>
+                    <div class="col-body" id="roberta-results"></div>
+                </div>
+
+                <div class="model-column ensemble" id="card-ensemble">
+                    <div class="col-header ensemble-header">
+                        <h2>Final Ensemble</h2>
+                        <span class="badge ensemble-badge">Soft Voting</span>
+                    </div>
+                    <div class="col-body" id="ensemble-results"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            MedClassify v1.0 — For demonstration purposes only. Not a diagnostic tool.
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
