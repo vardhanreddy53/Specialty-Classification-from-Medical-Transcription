@@ -3,3 +3,7 @@
 
 # Ignore all PNG files
 *.png
+
+# Ignore env files
+.env
+.env.*
