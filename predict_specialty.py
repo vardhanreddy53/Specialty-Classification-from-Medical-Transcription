@@ -68,17 +68,28 @@ class EnsembleSoftVoting:
         # Return individual model predictions and the final ensemble score
         return all_model_preds, ensemble_scores
 
-def print_all(title, scores_dict):
+def print_top_5(title, scores_dict):
     sorted_scores = sorted(scores_dict.items(), key=lambda x: x[1], reverse=True)
-    print(f"\n[ {title} All Predictions ]")
-    for i, (label, prob) in enumerate(sorted_scores, 1):
+    print(f"\n[ {title} Top 5 Predictions ]")
+    for i, (label, prob) in enumerate(sorted_scores[:5], 1):
         print(f"{i}. {label} ({prob:.2%})")
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         text = sys.argv[1]
     else:
-        text = "Patient is a 55-year-old male presenting with chest pain, shortness of breath, and diaphoresis. EKG shows STEMI."
+        print("\n" + "="*50)
+        print("  MEDCLASSIFY CLI - INTERACTIVE MODE")
+        print("="*50)
+        print("Please enter a clinical transcript to classify.")
+        print("*(Or just hit ENTER to run the default sample text)*\n")
+        
+        user_input = input("Transcript >>> ")
+        if user_input.strip():
+            text = user_input
+        else:
+            print("\n[Using default sample text...]")
+            text = "Patient is a 55-year-old male presenting with chest pain, shortness of breath, and diaphoresis. EKG shows STEMI."
         
     print("-" * 50)
     biobert = BioBertModel()
@@ -95,6 +106,6 @@ if __name__ == "__main__":
     (bio_preds, rob_preds), ens_preds = ensemble.predict(text)
     
     # Print results
-    print_all("BioBert", bio_preds)
-    print_all("RoBERTa", rob_preds)
-    print_all("Final ENSEMBLE Soft Voting", ens_preds)
+    print_top_5("BioBert", bio_preds)
+    print_top_5("RoBERTa", rob_preds)
+    print_top_5("Final ENSEMBLE Soft Voting", ens_preds)
