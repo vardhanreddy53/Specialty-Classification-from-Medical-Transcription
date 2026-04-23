@@ -16,3 +16,13 @@ venv/
 __pycache__/
 *.pyc
 *.pyo
+
+# webScraper
+Scraper.py
+
+# basic models(Lr,SVM)
+Basic_classification.ipynb
+
+# Roberta
+roberta.ipynb
+Roberta_optimised.ipynb
