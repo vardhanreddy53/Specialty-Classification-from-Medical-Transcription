@@ -40,3 +40,30 @@ python predict_specialty.py
 The script will say `Transcript >>>` and wait for you to paste your medical transcription. Once entered, it will instantly generate the Top 5 predictions for BioBert, RoBERTa, and the Final Ensemble!
 
 *(Advanced edge-case: You can also optionally bypass the interactive prompt by providing your text inside quotes directly inline: `python predict_specialty.py "patient has chest pain..."`)*
+
+## File Structure
+
+```text
+├── predict_specialty.py     # CLI entry-point
+├── launch.py                # Web interface launcher
+├── requirements.txt         # Python dependencies
+├── scripts/
+│   ├── start.bat            # Windows launcher
+│   └── start.sh             # Mac/Linux launcher
+├── BioBertModern/
+│   └── bioclinical_modernbert_specialty/
+│       ├── config.json              # Model configuration
+│       ├── model.safetensors        # Model weights (Safetensors)
+│       ├── pytorch_model.bin        # Model weights (PyTorch)
+│       └── tokenizer files          # Tokenizer files
+├── roberta_best/
+│   └── hf_model/
+│       ├── config.json              # Model configuration
+│       ├── model.safetensors        # Model weights (Safetensors)
+│       ├── pytorch_model.bin        # Model weights (PyTorch)
+│       ├── label_mappings.json      # Label mappings
+│       └── tokenizer files          # Tokenizer files
+├── BioBertTraining.ipynb            # BioBERT training
+├── Roberta_finetuning.ipynb         # RoBERTa training
+└── ensembled_model_metric.ipynb     # Ensembled model metrics evaluation
+```
