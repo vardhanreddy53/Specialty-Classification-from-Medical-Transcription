@@ -3,3 +3,4 @@ transformers
 safetensors
 flask
 flask-cors
+gunicorn

@@ -53,8 +53,12 @@ def open_browser():
     webbrowser.open_new("http://127.0.0.1:5000/")
 
 if __name__ == '__main__':
-    # Give the server a brief second to start, then pop open the web browser!
-    Timer(1, open_browser).start()
+    # Cloud Run expects the app to listen on the PORT environment variable (default 8080)
+    port = int(os.environ.get("PORT", 5000))
+    
+    if os.environ.get("FLASK_ENV") == "development" or os.environ.get("PORT") is None:
+        # Give the server a brief second to start, then pop open the web browser!
+        Timer(1, open_browser).start()
     
     # Use threaded=False if models run into PyTorch multithreading issues
-    app.run(debug=False, port=5000, threaded=True)
+    app.run(debug=False, host='0.0.0.0', port=port, threaded=True)
