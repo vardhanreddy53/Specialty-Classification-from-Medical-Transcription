@@ -26,6 +26,14 @@ python launch.py
 
 *(Alternatively, you can manually double-click `scripts/start.bat` on Windows or run `scripts/start.sh` on Mac).*
 
+
+
+https://github.com/user-attachments/assets/9ea9ef15-b60a-40a0-9ba4-d64c97f3c81e
+
+
+
+
+
 ## Running the Command Line Interface (CLI)
 
 If you prefer to run the predictions directly in your terminal without the web interface, you can use the underlying Python script! 
@@ -40,6 +48,9 @@ python predict_specialty.py
 The script will say `Transcript >>>` and wait for you to paste your medical transcription. Once entered, it will instantly generate the Top 5 predictions for BioBert, RoBERTa, and the Final Ensemble!
 
 *(Advanced edge-case: You can also optionally bypass the interactive prompt by providing your text inside quotes directly inline: `python predict_specialty.py "patient has chest pain..."`)*
+
+<img width="3764" height="1509" alt="image" src="https://github.com/user-attachments/assets/17d22fe1-fcfb-4286-8e08-20cba469577c" />
+
 
 ## File Structure
 
